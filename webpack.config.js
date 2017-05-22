@@ -1,5 +1,19 @@
 const path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+
+let plugins = [
+    new HtmlWebpackPlugin({
+        template: './src/apps/index/index.html',
+        inject: false
+    })
+];
+
+if (process.env.NODE_ENV === 'production') {
+    plugins.push( new webpack.optimize.UglifyJsPlugin({
+        compress: { warnings: false }
+    }));
+}
 
 module.exports = {
     entry: {
@@ -14,10 +28,5 @@ module.exports = {
             {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"}
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/apps/index/index.html',
-            inject: false
-        })
-    ]
+    plugins: plugins
 }

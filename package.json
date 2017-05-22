@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./app/Application.js"
+    "start": "node ./app/Application.js",
+    "production": "NODE_ENV='production' webpack && node ./app/Application.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,6 @@
     "babel-loader": "^6.4.0",
     "co": "^4.6.0",
     "co-request": "^1.0.0",
-    "ioredis": "^2.5.0",
     "koa": "^1.2.4",
     "koa-body": "^1.6.0",
     "koa-forward-request": "^0.8.0",
